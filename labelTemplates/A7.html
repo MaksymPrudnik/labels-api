@@ -12,6 +12,7 @@
             font-family: Arial, sans-serif;
             font-size: 0;
         }
+        span {display: inline-block;}
         hr {background-color: black;width: 105mm;position:relative;left: -5mm;border: 0.5px solid black;}
         .label-container {
             height: 251mm;
@@ -36,6 +37,7 @@
         .f5-f6{height: 18mm;}
         .f5_{width: 29mm;}
         .f6_{height: 14mm;}
+        .f6_1{line-height: 36pt;}
 
         /* f7-f11 */
         .f7-f11{height: 20mm;}
@@ -44,10 +46,20 @@
         .f7_, .f8_, .f9_, .f10_{height: 10mm;}
         .f11{height: 12mm;width: 12mm; float: right;}
         
-        /* f12-18 */
-        .f12-f18{height: 122mm;width: 95mm;border: 2px solid black;box-sizing: content-box;overflow: hidden;}
+        /* f12-f18 */
+        .f12-f18{height: 122mm;width: 95mm;border: 2px solid black;box-sizing: content-box;}
         .f12-f13, .f14-f15, .f16, .f17-f18{height: 6mm;line-height: 6mm; width: 100%;}
-        .f12_1-f13_1, .f14_1-f15_1, .f16_1, .f17_1-f18_1{height: 24.5mm;line-height: 24.5mm;}
+        .f12_1-f13_1, .f14_1-f15_1, .f16_1, .f17_1-f18_1 div{height: 24.5mm;line-height: 24.5mm;}
+
+        .spacer{height: 8mm;}
+
+        /* f20-f22 */
+        .f20-f22{height: 65mm;width: 95mm;}
+        .f20_, .f21_, .f22_{height: 34mm;width: 31.7mm;}
+        .f20{height: 5mm;align-items: flex-end;}
+        .f21-f21_1, .f22-f22_1{height: 5mm;flex-direction: column;justify-content: flex-end;}
+        .f20_1, .f21_2, .f22_2 {height: 19mm;width: 19mm;margin: 2mm auto;}
+        .f20_3{height: 13mm;width: 95mm;}
 
         /* Extra */
         .fz4{font-size: 4pt;}
@@ -59,7 +71,7 @@
         .fz14{font-size: 14pt;}
         .fz18{font-size: 18pt;}
         .fz36{font-size: 36pt;}
-        .fz78{font-size: 78pt;}
+        .fz78{font-size: 104px;}
         .flex{display: flex;}
         .bold {font-weight: bold;}
         .tl {text-align: left;}
@@ -70,6 +82,8 @@
         .bdb{border-bottom: 2px solid #000;}
         .bdr{border-right: 2px solid #000;}
         .w50{width: 47.5mm;}
+        .centered{justify-content: center;align-items: center;}
+        .dyn-sz78, .dyn-sz14, .dyn-sz36{overflow: hidden;}
     </style>
 </head>
 <body>
@@ -88,7 +102,7 @@
                 <div class="f3 fz5 upper">ORDER NUMBER</div>
                 <div class="f4 fz4">App: PrintServer 5.0 - 2013-09-03</div>
                 <div class="f4_1 fz4 tr">v1.00</div>
-                <div class="f3_1 fz36">471965</div>
+                <div class="f3_1 fz36 dyn-sz36"><span>471965</span></div>
             </div>
         </div>
         <hr />
@@ -103,7 +117,7 @@
                 </div>
                 <div class="f6_">
                     <div class="f6 fz5">PROJECT NUMBER</div>
-                    <div class="f6_1 fz36">3502149</div>
+                    <div class="f6_1 fz36 dyn-sz36"><span>3502149</span></div>
                 </div>
             </div>
             <div class="flex">
@@ -132,41 +146,111 @@
                 </div>
                 <div class="f10_">
                     <div class="f10 fz5">CONTENT</div>
-                    <div class="f10_1 fz14">Fitting products</div>
+                    <div class="f10_1 fz14 dyn-sz14"><span>Fitting products</span></div>
                 </div>
             </div>
         </div>
         <div class="f12-f18 tc">
-            <div class="f12-f13 flex bdb fz14">
-                <div class="f12 bdr w50">Unloading place</div>
-                <div class="f13 w50">Building</div>
+            <div class="f12-f13 flex bdb fz14 centered">
+                <div class="f12 bdr w50 dyn-sz14"><span>Unloading place</span></div>
+                <div class="f13 w50 dyn-sz14"><span>Building</span></div>
             </div>
-            <div class="f12_1-f13_1 flex bdb fz78">
-                <div class="f12_1 bdr w50">B</div>
-                <div class="f13_1 w50">D</div>
+            <div class="f12_1-f13_1 flex bdb fz78 centered">
+                <div class="f12_1 bdr w50 dyn-sz78 flex centered"><span>B</span></div>
+                <div class="f13_1 w50 dyn-sz78 flex centered"><span>D</span></div>
             </div>
-            <div class="f14-f15 flex bdb fz14">
-                <div class="f14 bdr w50">Stairs</div>
-                <div class="f15 w50">Floor</div>
+            <div class="f14-f15 flex bdb fz14 centered">
+                <div class="f14 bdr w50 dyn-sz14"><span>Stairs</span></div>
+                <div class="f15 w50 dyn-sz14"><span>Floor</span></div>
             </div>
-            <div class="f14_1-f15_1 flex bdb fz78">
-                <div class="f14_1 bdr w50">1</div>
-                <div class="f15_1 w50">2</div>
+            <div class="f14_1-f15_1 flex bdb fz78 centered">
+                <div class="f14_1 bdr w50 dyn-sz78 flex centered"><span>1</span></div>
+                <div class="f15_1 w50 dyn-sz78 flex centered"><span>2</span></div>
             </div>
-            <div class="f16 bdb fz14">Appartment</div>
-            <div class="f16_1 bdb fz78">1103</div>
-            <div class="f17-f18 flex bdb fz14">
-                <div class="f17 bdr w50">Room</div>
-                <div class="f18 w50">Position</div>
+            <div class="f16 bdb fz14 flex centered dyn-sz14"><span>Appartment</span></div>
+            <div class="f16_1 bdb fz78 flex centered dyn-sz78"><span>1103</span></div>
+            <div class="f17-f18 flex bdb fz14 centered">
+                <div class="f17 bdr w50 dyn-sz14"><span>Room</span></div>
+                <div class="f18 w50 dyn-sz14"><span>Position</span></div>
             </div>
-            <div class="f17_1-f18_1 flex fz78">
-                <div class="f17_1 bdr w50">456</div>
-                <div class="f18_1 w10 w50">7890</div>
+            <div class="f17_1-f18_1 flex fz78 centered">
+                <div class="f17_1 bdr w50 dyn-sz78 flex centered"><span>456qwe</span></div>
+                <div class="f18_1 w10 w50 dyn-sz78 flex centered"><span>789000</span></div>
             </div>
         </div>
-        <div class="codes">
-
+        <div class="spacer"></div>
+        <div class="f20-f22 ">
+            <div class="qr flex">
+                <div class="f20_">
+                    <div class="f20 flex fz5">PACKAGE ID</div>
+                    <div class="flex"><img class="f20_1" src="https://www.iconfinder.com/data/icons/tiny-icons-1/100/tiny-15-512.png" alt=""></div>
+                    <div class="f20_2 bold fz7">(90)123456789012345678</div>
+                </div>
+                <div class="f21_">
+                    <div class="f21-f21_1 flex">
+                        <div class="f21 fz5">GPS (WGS84)</div>
+                        <div class="f21_1 fz5">FINAL DESTINATION</div>
+                    </div>
+                    <div class="flex"><img class="f21_2" src="https://www.iconfinder.com/data/icons/tiny-icons-1/100/tiny-15-512.png" alt=""></div>
+                    <div class="f21_3 bold tc fz7">GEO: 59.61227, 16.57438</div>
+                </div>
+                <div class="f22_">
+                    <div class="f22-f22_1 flex">
+                        <div class="f22 fz5">PHONE</div>
+                        <div class="f22_1 fz5">FINAL DESTINATION</div>
+                    </div>
+                    <div class="flex"><img class="f22_2" src="https://www.iconfinder.com/data/icons/tiny-icons-1/100/tiny-15-512.png" alt=""></div>                    
+                    <div class="f22_3 tc bold fz7">TEL: +46701234567</div>
+                </div>
+            </div>
+            <div class="bar">
+                <img class="f20_3" src="https://www.iconfinder.com/data/icons/tiny-icons-1/100/tiny-15-512.png" alt="">
+                <div class="f20_4 bold tc fz12">(90)123456789012345678</div>
+            </div>
         </div>
     </div>
+    <script>
+        const dynSizedArray78 = document.querySelectorAll('.dyn-sz78')
+        dynSizedArray78.forEach(item => {
+            const child = item.children[0];
+            while (child.offsetWidth > item.offsetWidth) {
+                const fontSize = Number(child.style.fontSize.slice(0, -2));
+                child.style.fontSize
+                ? child.style.fontSize = (fontSize - 4) + 'px'
+                : child.style.fontSize = '100px'
+                if ((fontSize - 4) < 65 && fontSize > 0) {
+                    child.textContent = child.textContent.slice(0, -1)
+                }
+            }
+        })
+
+        const dynSizedArray36 = document.querySelectorAll('.dyn-sz36')
+        dynSizedArray36.forEach(item => {
+            const child = item.children[0];
+            while (child.offsetWidth > item.offsetWidth) {
+                const fontSize = Number(child.style.fontSize.slice(0, -2));
+                child.style.fontSize
+                ? child.style.fontSize = (fontSize - 3) + 'px'
+                : child.style.fontSize = '45px'
+                if ((fontSize - 3) <= 27 && fontSize > 0) {
+                    child.textContent = child.textContent.slice(0, -1)
+                }
+            }
+        })
+
+        const dynSizedArray14 = document.querySelectorAll('.dyn-sz14')
+        dynSizedArray14.forEach(item => {
+            const child = item.children[0];
+            while (child.offsetWidth > item.offsetWidth) {
+                const fontSize = Number(child.style.fontSize.slice(0, -2));
+                child.style.fontSize
+                ? child.style.fontSize = (fontSize - 1) + 'px'
+                : child.style.fontSize = '17.3px'
+                if ((fontSize - 1) < 14 && fontSize > 0) {
+                    child.textContent = child.textContent.slice(0, -1)
+                }
+            }
+        })
+    </script>
 </body>
 </html>

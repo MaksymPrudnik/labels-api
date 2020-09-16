@@ -4,11 +4,14 @@
   "description": "Back end part of labels project",
   "main": "index.js",
   "scripts": {
+    "dev": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Maksym Prudnik",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.17.1"
+    "bwip-js": "^2.0.10",
+    "express": "^4.17.1",
+    "puppeteer": "^5.3.0"
   }
 }
