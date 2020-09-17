@@ -77,6 +77,7 @@ const generatePdfA7 = async (data) => {
                 font-family: Arial, sans-serif;
                 font-size: 0;
                 overflow: hidden;
+                -webkit-print-color-adjust: exact;
             }
             span {display: inline-block;}
             hr {background-color: black;width: 105mm;position:relative;left: -5mm;border: 0.5px solid black;}
@@ -322,7 +323,7 @@ const generatePdfA7 = async (data) => {
     </html>
     `);
 
-    const pdfBuffer = await page.pdf({width: '105mm', height: '251mm'});
+    const pdfBuffer = await page.pdf({path: 'new.pdf', width: '105mm', height: '251mm'});
 
     await browser.close();
 
