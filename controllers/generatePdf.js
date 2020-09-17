@@ -323,7 +323,7 @@ const generatePdfA7 = async (data) => {
     </html>
     `);
 
-    const pdfBuffer = await page.pdf({path: 'new.pdf', width: '105mm', height: '251mm'});
+    const pdfBuffer = await page.pdf({width: '105mm', height: '251mm'});
 
     await browser.close();
 
