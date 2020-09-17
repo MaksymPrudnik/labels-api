@@ -6,14 +6,14 @@ const handleGeneratePdfA7 = async (req, res) => {
     const data = req.body;
     if (
         !data.f2_1 || !data.f2_2 || !data.f2_3 || !data.f2_4 || !data.f2_5 || !data.f2_7 || 
-        !data.f3_1 || !data.f4 || !data.f4_1 || 
+        !data.f3_1 ||
         !data.f5_1 || !data.f5_2 || !data.f5_3 || !data.f5_4 || !data.f5_5 || !data.f5_6 || 
         !data.f5_7 || !data.f6_1 || 
         !data.f7_1 || !data.f8_1 || !data.f9_1 || !data.f10_1 || 
         !data.f12 || !data.f12_1 || !data.f13 || !data.f13_1 || !data.f14 || !data.f14_1 || 
         !data.f15 || !data.f15_1 || !data.f16 || !data.f16_1 || !data.f17 || !data.f17_1 || 
         !data.f18 || !data.f18_1 || 
-        !data.f20_2 || !data.f20_4 || !data.f21_3 || !data.f22_3) {
+        !data.f20_2 || !data.f21_3 || !data.f22_3) {
         return res.status(400).json('Wrong params');
     }
 
@@ -27,13 +27,13 @@ const handleGeneratePdfA7 = async (req, res) => {
 const generatePdfA7 = async (data) => {
     const f20_1 = await bwip.toBuffer({
         bcid: 'gs1datamatrix',
-        text: data.f20_2,
+        text: `(90)${data.f20_2}`,
         height: 19
     });
 
     const f20_3 = await bwip.toBuffer({
         bcid: 'gs1-128',
-        text: data.f20_4,
+        text: `(90)${data.f20_2}`,
         height: 13
     });
 
@@ -56,6 +56,9 @@ const generatePdfA7 = async (data) => {
     const f20_3PNG = 'data:image/png;base64,' + f20_3.toString('base64');
     const f21_2PNG = 'data:image/png;base64,' + f21_2.toString('base64');
     const f22_2PNG = 'data:image/png;base64,' + f22_2.toString('base64');
+
+    const f4 = `App:PrintServer 1.0 - ${new Date().toLocaleDateString()}`;
+    const f4_1 = 'v1.00';
 
     await page.setContent(`
     <!DOCTYPE html>
@@ -163,8 +166,8 @@ const generatePdfA7 = async (data) => {
                 </div>
                 <div class="f3-f4">
                     <div class="f3 fz5 upper">ORDER NUMBER</div>
-                    <div class="f4 fz4">${data.f4}</div>
-                    <div class="f4_1 fz4 tr">${data.f4_1}</div>
+                    <div class="f4 fz4">${f4}</div>
+                    <div class="f4_1 fz4 tr">${f4_1}</div>
                     <div class="f3_1 fz36 dyn-sz36"><span>${data.f3_1}</span></div>
                 </div>
             </div>
@@ -268,7 +271,7 @@ const generatePdfA7 = async (data) => {
                 </div>
                 <div class="bar">
                     <img class="f20_3" src=${f20_3PNG} alt="">
-                    <div class="f20_4 bold tc fz12">${data.f20_4}</div>
+                    <div class="f20_4 bold tc fz12">${data.f20_2}</div>
                 </div>
             </div>
         </div>
