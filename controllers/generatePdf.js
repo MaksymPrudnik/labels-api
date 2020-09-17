@@ -2,7 +2,7 @@ const bwip = require('bwip-js');
 const puppeteer = require('puppeteer');
 
 
-const handleGeneratePdfA7 = (req, res) => {
+const handleGeneratePdfA7 = async (req, res) => {
     const data = req.body;
     if (
         !data.f2_1 || !data.f2_2 || !data.f2_3 || !data.f2_4 || !data.f2_5 || !data.f2_7 || 
@@ -16,49 +16,43 @@ const handleGeneratePdfA7 = (req, res) => {
         !data.f20_2 || !data.f20_4 || !data.f21_3 || !data.f22_3) {
         return res.status(400).json('Wrong params');
     }
-    return generatePdfA7(data)
-    .then((pdf) => {
-        console.log('out of generate pdf')
-        res.set('Content-Type', 'application/pdf');
-        return res.send(pdf);
-    })
-    .catch(err => res.status(400).json(err));
+
+    const pdfBuffer = await generatePdfA7(data);
+
+    console.log('out of generate pdf')
+    res.set('Content-Type', 'application/pdf');
+    res.send(pdfBuffer);
 }
 
-const generatePdfA7 = (data) => {
-    const f20_1 = bwip.toBuffer({
+const generatePdfA7 = async (data) => {
+    const f20_1 = await bwip.toBuffer({
         bcid: 'gs1datamatrix',
         text: data.f20_2,
         height: 19
-    })
-    .then(png => png)
-    .catch(console.log);
-    const f20_3 = bwip.toBuffer({
+    });
+
+    const f20_3 = await bwip.toBuffer({
         bcid: 'gs1-128',
         text: data.f20_4,
         height: 13
-    })
-    .then(png => png)
-    .catch(console.log);
-    const f21_2 = bwip.toBuffer({
+    });
+
+    const f21_2 = await bwip.toBuffer({
         bcid: 'gs1qrcode',
         text: `(410)${data.f21_3}`,
         height: 19
-    })
-    .then(png => png)
-    .catch(console.log);
-    const f22_2 = bwip.toBuffer({
+    });
+
+    const f22_2 = await bwip.toBuffer({
         bcid: 'gs1datamatrix',
         text: `(8002)${data.f22_3}`,
         height: 19
-    })
-    .then(png => png)
-    .catch(console.log);
-    return puppeteer.launch()
-    .then(browser => browser.newPage())
-    // copied from html template A7
-    .then(page => {
-        page.setContent(`
+    });
+
+    const browser = await puppeteer.launch();
+    const page = await browser.newPage();
+    
+    await page.setContent(`
     <!DOCTYPE html>
     <html lang="en">
     <head>
@@ -315,11 +309,13 @@ const generatePdfA7 = (data) => {
         </script>
     </body>
     </html>
-    `)
-        return page;
-    })
-    .then((page) => page.pdf({width: '105mm', height: '251mm'}))
-    .catch(err => Promise.reject(String(err)))    
+    `);
+
+    const pdfBuffer = await page.pdf({width: '105mm', height: '251mm'});
+
+    await browser.close();
+
+    return pdfBuffer;
 }
 
 module.exports = {
