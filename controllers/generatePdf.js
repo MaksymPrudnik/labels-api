@@ -19,9 +19,10 @@ const handleGeneratePdfA7 = async (req, res) => {
 
     const pdfBuffer = await generatePdfA7(data);
 
-    console.log('out of generate pdf')
-    res.set('Content-Type', 'application/pdf');
-    res.send(pdfBuffer);
+    const labelPDF = 'data:application/octet-stream;base64,' + pdfBuffer.toString('base64');
+
+    res.end(labelPDF);
+    // return res.download('new.pdf', 'BEAst_Label.pdf', err => console.log(err))
 }
 
 const generatePdfA7 = async (data) => {
@@ -323,7 +324,7 @@ const generatePdfA7 = async (data) => {
     </html>
     `);
 
-    const pdfBuffer = await page.pdf({width: '105mm', height: '251mm'});
+    const pdfBuffer = await page.pdf({path: 'new.pdf',width: '105mm', height: '251mm'});
 
     await browser.close();
 
