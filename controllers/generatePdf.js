@@ -51,7 +51,12 @@ const generatePdfA7 = async (data) => {
 
     const browser = await puppeteer.launch();
     const page = await browser.newPage();
-    
+
+    const f20_1PNG = 'data:image/png;base64,' + f20_1.toString('base64');
+    const f20_3PNG = 'data:image/png;base64,' + f20_3.toString('base64');
+    const f21_2PNG = 'data:image/png;base64,' + f21_2.toString('base64');
+    const f22_2PNG = 'data:image/png;base64,' + f22_2.toString('base64');
+
     await page.setContent(`
     <!DOCTYPE html>
     <html lang="en">
@@ -64,8 +69,11 @@ const generatePdfA7 = async (data) => {
             html, body {
                 padding: 0;
                 margin: 0;
+                height: 251mm;
+                width: 105mm;
                 font-family: Arial, sans-serif;
                 font-size: 0;
+                overflow: hidden;
             }
             span {display: inline-block;}
             hr {background-color: black;width: 105mm;position:relative;left: -5mm;border: 0.5px solid black;}
@@ -238,7 +246,7 @@ const generatePdfA7 = async (data) => {
                 <div class="qr flex">
                     <div class="f20_">
                         <div class="f20 flex fz5">PACKAGE ID</div>
-                        <div class="flex"><img class="f20_1" src=${f20_1} alt=""></div>
+                        <div class="flex"><img class="f20_1" src=${f20_1PNG} alt=""></div>
                         <div class="f20_2 bold fz7">${data.f20_2}</div>
                     </div>
                     <div class="f21_">
@@ -246,7 +254,7 @@ const generatePdfA7 = async (data) => {
                             <div class="f21 fz5">GPS (WGS84)</div>
                             <div class="f21_1 fz5">FINAL DESTINATION</div>
                         </div>
-                        <div class="flex"><img class="f21_2" src=${f21_2} alt=""></div>
+                        <div class="flex"><img class="f21_2" src=${f21_2PNG} alt=""></div>
                         <div class="f21_3 bold tc fz7">${data.f21_3}</div>
                     </div>
                     <div class="f22_">
@@ -254,12 +262,12 @@ const generatePdfA7 = async (data) => {
                             <div class="f22 fz5">PHONE</div>
                             <div class="f22_1 fz5">FINAL DESTINATION</div>
                         </div>
-                        <div class="flex"><img class="f22_2" src=${f22_2} alt=""></div>                    
+                        <div class="flex"><img class="f22_2" src=${f22_2PNG} alt=""></div>                    
                         <div class="f22_3 tc bold fz7">TEL: ${data.f22_3}</div>
                     </div>
                 </div>
                 <div class="bar">
-                    <img class="f20_3" src=${f20_3} alt="">
+                    <img class="f20_3" src=${f20_3PNG} alt="">
                     <div class="f20_4 bold tc fz12">${data.f20_4}</div>
                 </div>
             </div>
