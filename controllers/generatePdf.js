@@ -49,7 +49,7 @@ const generatePdfA7 = async (data) => {
         height: 19
     });
 
-    const browser = await puppeteer.launch();
+    const browser = await puppeteer.launch({ args: ['--no-sandbox'] });
     
     const page = await browser.newPage();
 
