@@ -8,7 +8,7 @@ services:
         command: npm run dev
         working_dir: /usr/src/labels-api
         environment: 
-            POSTGRES_URL: 'postgres://max:secret@postgres:5432/labels-docker'
+            DATABASE_URL: 'postgres://max:secret@postgres:5432/labels-docker'
             JWT_SECRET: 'secret'
         ports: 
             - "3000:3000"
