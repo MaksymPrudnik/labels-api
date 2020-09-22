@@ -27,7 +27,7 @@ app.post('/register', (req, res) => register.handleRegister(req, res, db, bcrypt
 app.post('/signin', (req, res) => signin.handleSignin(req, res, db, bcrypt, jwt))
 app.post('/generate-pdf', (req, res, next) => auth.requireAuth(req, res, next, jwt), (req, res) => generatePdf.handleGeneratePdfA7(req, res))
 
-
+console.log('Starting...');
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
     console.log(`App running on port ${port}`)
