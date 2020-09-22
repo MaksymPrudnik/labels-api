@@ -22,7 +22,6 @@ const handleGeneratePdfA7 = async (req, res) => {
     const labelPDF = 'data:application/octet-stream;base64,' + pdfBuffer.toString('base64');
 
     res.end(labelPDF);
-    // return res.download('new.pdf', 'BEAst_Label.pdf', err => console.log(err))
 }
 
 const generatePdfA7 = async (data) => {
@@ -51,6 +50,7 @@ const generatePdfA7 = async (data) => {
     });
 
     const browser = await puppeteer.launch();
+    
     const page = await browser.newPage();
 
     const f20_1PNG = 'data:image/png;base64,' + f20_1.toString('base64');

@@ -1,0 +1,29 @@
+version: "3.8"
+
+services:
+    # Backend
+    labels-api:
+        container_name: labels-backend
+        build: ./
+        command: npm run dev
+        working_dir: /usr/src/labels-api
+        environment: 
+            POSTGRES_URL: 'postgres://max:secret@postgres:5432/labels-docker'
+            JWT_SECRET: 'secret'
+        ports: 
+            - "3000:3000"
+        volumes: 
+            - ./:/usr/src/labels-api
+    
+    # postgres
+    postgres:
+        build: ./postgres
+        environment: 
+            POSTGRES_USER: max
+            POSTGRES_PASSWORD: secret
+            POSTGRES_DB: labels-docker
+            POSTGRES_HOST: postgres
+        ports: 
+            - "5432:5432"
+
+        
