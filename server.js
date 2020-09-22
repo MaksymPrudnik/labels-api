@@ -8,7 +8,7 @@ const jwt = require('jsonwebtoken')
 const db = knex({
     client: 'pg',
     connection: {
-        connectionString: process.env.POSTGRES_URL, 
+        connectionString: process.env.DATABASE_URL, 
         ssl: Boolean(process.env.NODE_ENV)
     }
 });
